@@ -22,24 +22,30 @@ public class Main extends JFrame {
         int resultat[][];
 
         try {
+            //Lecture ligne par ligne du fichier config.picross
             fis = new FileInputStream(new File("config.picross"));
             BufferedReader configFile = new BufferedReader(new InputStreamReader(fis));
             String line;
             int i2=0;
             while ((line = configFile.readLine()) != null) {
+                //Ajout du nom du fichier png à l'ArrayList pngList
                 pngList.add(i2, line);
                 i2++;
             }
             fis.close();
         } catch (FileNotFoundException e) {
+            //Si le fichier config.picross n'existe pas
             exit(1);
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
+            //On parcourt l'ArrayLis pngList
             for (i=0; i < pngList.size(); i++) {
                 BufferedImage img = ImageIO.read(new File(pngList.get(i) + ".png"));
+                //On stocke les données des images dans un tableau d'int
                 resultat = convertToRGB(img, pngList.get(i));
+                //On crée un nouveau fichier et on écrit 0 si, il y a un pixel blanc et 1 s'il est noir
                 BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(new File(pngList.get(i) + ".picross")));
                 for (int x = 0; x < img.getWidth(); x++) {
                     for (int y = 0; y < img.getHeight(); y++) {
@@ -50,6 +56,7 @@ public class Main extends JFrame {
                 fos.close();
             }
         } catch(IIOException e) {
+            //L'image n'existe pas
             exit(2);
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,6 +67,7 @@ public class Main extends JFrame {
     private int[][] convertToRGB(BufferedImage image, String imageName) {
         int width = image.getWidth();
         int height = image.getHeight();
+        //L'image est trop grande
         if(width>100 || height >100) exit(3);
         int[][] result = new int[height][width];
         double i=0;
@@ -101,12 +109,14 @@ public class Main extends JFrame {
             addLog(str);
         }
         try {
+            //On écrit dans le fichier picross.log ce qui c'est passé.
             PrintStream str = new PrintStream(new File("picross.log"));
             System.setOut(str);
             System.out.println(log);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        //Si il y a une erreur on quitte le programme
         if(err>0) System.exit(0);
     }
 }
