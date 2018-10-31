@@ -16,6 +16,7 @@ public class Main extends JFrame {
     private String log = "";
     private ArrayList<String> pngList = new ArrayList<>();
     private int i = 0;
+    private String name = "";
 
     private Main() {
         FileInputStream fis;
@@ -25,14 +26,20 @@ public class Main extends JFrame {
             //Lecture ligne par ligne du fichier config.picross
             fis = new FileInputStream(new File("config.picross"));
             BufferedReader configFile = new BufferedReader(new InputStreamReader(fis));
-            String line;
+            String line, preLine = "";
             int i2=0;
             while ((line = configFile.readLine()) != null) {
-                //Ajout du nom du fichier png à l'ArrayList pngList
-                pngList.add(i2, line);
-                i2++;
+                if(preLine.equals("PicrossName")) name=line;
+                else if(!line.equals("PicrossName")){
+                    //Ajout du nom du fichier png à l'ArrayList pngList
+                    pngList.add(i2, line);
+                    i2++;
+                }
+                preLine=line;
             }
             fis.close();
+            if(name.equals("")) exit(4);
+            if(pngList.isEmpty()) exit(5);
         } catch (FileNotFoundException e) {
             //Si le fichier config.picross n'existe pas
             exit(1);
@@ -40,21 +47,23 @@ public class Main extends JFrame {
             e.printStackTrace();
         }
         try {
+            BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(new File(name + ".picross")));
             //On parcourt l'ArrayLis pngList
             for (i=0; i < pngList.size(); i++) {
                 BufferedImage img = ImageIO.read(new File(pngList.get(i) + ".png"));
                 //On stocke les données des images dans un tableau d'int
                 resultat = convertToRGB(img, pngList.get(i));
                 //On crée un nouveau fichier et on écrit 0 si, il y a un pixel blanc et 1 s'il est noir
-                BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(new File(pngList.get(i) + ".picross")));
+                fos.write((pngList.get(i)+":").getBytes());
                 for (int x = 0; x < img.getWidth(); x++) {
                     for (int y = 0; y < img.getHeight(); y++) {
                         if (resultat[y][x] == -1) fos.write("0".getBytes());
                         else if (resultat[y][x] == -16777216) fos.write("1".getBytes());
                     }
                 }
-                fos.close();
+                fos.write("\n\r".getBytes());
             }
+            fos.close();
         } catch(IIOException e) {
             //L'image n'existe pas
             exit(2);
@@ -95,23 +104,38 @@ public class Main extends JFrame {
     }
 
     private void exit(int err) {
-        if(err==1) {
-            String str = "Le fichier config.picross n'existe pas.";
-            System.out.println(str);
-            addLog(str);
-        } else if(err==2) {
-            String str = "L'image " + pngList.get(i) + " n'existe pas ou n'est pas au format png.";
-            System.out.println(str);
-            addLog(str);
-        } else if(err==3) {
-            String str = "L'image " + pngList.get(i) + " est trop grande. La taille maximal est de 100*100px.";
-            System.out.println(str);
-            addLog(str);
+        String str;
+        switch (err) {
+            case 1:
+                str = "Le fichier config.picross n'existe pas.";
+                System.out.println(str);
+                addLog(str);
+                break;
+            case 2:
+                str = "L'image " + pngList.get(i) + " n'existe pas ou n'est pas au format png.";
+                System.out.println(str);
+                addLog(str);
+                break;
+            case 3:
+                str = "L'image " + pngList.get(i) + " est trop grande. La taille maximal est de 100*100px.";
+                System.out.println(str);
+                addLog(str);
+                break;
+            case 4:
+                str = "Le nom du fichier de sortie n'est pas spécifié.";
+                System.out.println(str);
+                addLog(str);
+                break;
+            case 5:
+                str = "Aucune image n'est spécifié.";
+                System.out.println(str);
+                addLog(str);
+                break;
         }
         try {
             //On écrit dans le fichier picross.log ce qui c'est passé.
-            PrintStream str = new PrintStream(new File("picross.log"));
-            System.setOut(str);
+            PrintStream ps = new PrintStream(new File("picross.log"));
+            System.setOut(ps);
             System.out.println(log);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
