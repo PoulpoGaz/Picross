@@ -29,6 +29,7 @@ public class Main extends JFrame {
             String line, preLine = "";
             int i2=0;
             while ((line = configFile.readLine()) != null) {
+                //Definition du nom du fichier de sortie
                 if(preLine.equals("PicrossName")) name=line;
                 else if(!line.equals("PicrossName")){
                     //Ajout du nom du fichier png à l'ArrayList pngList
@@ -38,7 +39,9 @@ public class Main extends JFrame {
                 preLine=line;
             }
             fis.close();
+            //Aucun nom choisi
             if(name.equals("")) exit(4);
+            //Aucune image choisi
             if(pngList.isEmpty()) exit(5);
         } catch (FileNotFoundException e) {
             //Si le fichier config.picross n'existe pas
@@ -52,6 +55,7 @@ public class Main extends JFrame {
             for (i=0; i < pngList.size(); i++) {
                 BufferedImage img = ImageIO.read(new File(pngList.get(i) + ".png"));
                 //On stocke les données des images dans un tableau d'int
+
                 resultat = convertToRGB(img, pngList.get(i));
                 //On crée un nouveau fichier et on écrit 0 si, il y a un pixel blanc et 1 s'il est noir
                 fos.write((pngList.get(i)+":").getBytes());
