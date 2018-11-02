@@ -5,10 +5,27 @@ import java.awt.*;
 
 public class NumPanel extends JPanel {
 
-    public NumPanel(int size) {
+    public JPanel content = new JPanel();
+    public boolean axis;
+
+    public NumPanel(int size, boolean axis) {
         super();
-        this.setPreferredSize(new Dimension(size*10,size*10));
+        if(axis) this.setPreferredSize(new Dimension(size*10,size*20));
+        else this.setPreferredSize(new Dimension(size*20,size*10));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.setBackground(Color.WHITE);
+        this.axis = axis;
+        if(axis) content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
+        else content.setLayout(new BoxLayout(content, BoxLayout.LINE_AXIS));
+    }
+
+    public void addLabel(String name) {
+        if(axis) content.add(new JLabel(name));
+        else content.add(new JLabel(name + " "));
+    }
+
+    public void finish() {
+        content.setBackground(Color.WHITE);
+        this.add(content);
     }
 }

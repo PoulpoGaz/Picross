@@ -8,28 +8,39 @@ import java.awt.event.MouseEvent;
 public class Case extends JPanel {
 
     private boolean cross;
-    private int size;
     private Color back;
 
-    public Case(boolean value, int size) {
+    public Case(boolean value, int size, Picross picross) {
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.setPreferredSize(new Dimension(size*10,size*10));
         this.cross=false;
-        this.size=size;
         this.back=Color.WHITE;
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if(SwingUtilities.isLeftMouseButton(e)) {
-                    if(getBack()==Color.BLACK) setBack(Color.WHITE);
-                    else setBack(Color.BLACK);
-                    cross=false;
-                } else if(SwingUtilities.isRightMouseButton(e)) {
-                    cross = !cross;
-                    setBack(Color.WHITE);
+                if(picross.state) {
+                    if(SwingUtilities.isLeftMouseButton(e)) {
+                        if (getBack() == Color.BLACK) {
+                            setBack(Color.WHITE);
+                            if (value) picross.blackCase--;
+                            else picross.wrongBlackCase--;
+                        }else {
+                            setBack(Color.BLACK);
+                            if(value) picross.blackCase++;
+                            else picross.wrongBlackCase++;
+                        }
+                        cross=false;
+                    } else if(SwingUtilities.isRightMouseButton(e)) {
+                        if(getBack()==Color.BLACK && value) picross.blackCase--;
+                        else if(getBack()==Color.BLACK&& !value) picross.wrongBlackCase--;
+                        cross = !cross;
+                        setBack(Color.WHITE);
+                    }
+                    picross.check();
+                    picross.update();
+                    repaint();
                 }
-                repaint();
             }
         });
     }

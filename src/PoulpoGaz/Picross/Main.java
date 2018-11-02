@@ -11,18 +11,17 @@ public class Main extends JFrame {
     }
 
     public Main() {
-        this.setSize(800, 800);
-        this.setResizable(false);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        this.setTitle("Picross");
-        this.setContentPane(new Picross("Mon super picross", 10));
-
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | UnsupportedLookAndFeelException | IllegalAccessException e) {
             e.printStackTrace();
         }
+        this.setSize(800, 800);
+        this.setResizable(false);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Picross");
+        this.setContentPane(new Picross("Mon super picross"));
         initBar();
         this.pack();
         this.setVisible(true);
@@ -43,10 +42,31 @@ public class Main extends JFrame {
 
         file.addActionListener(new ChoosePack());
         quit.addActionListener(e -> System.exit(0));
-        reset.addActionListener(new Reset());
+        reset.addActionListener(e -> {
+            this.setContentPane(new Picross("Mon super picross"));
+            SwingUtilities.updateComponentTreeUI(this);
+        });
         htp.addActionListener(e -> {
             JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "", "Comment jouer?", JOptionPane.INFORMATION_MESSAGE);
+            jop.showMessageDialog(null, "Un picross, logigraphe, hanjie, griddler, nonogram ou encore logimage est un jeu de réflexion solitaire, qui consiste\n" +
+                                        "à découvrir un dessin sur une grille en noircissant des cases, d'après des indices logiques laissés sur le bord de la\n" +
+                                        "grille. Le but consiste à retrouver les cases noires dans chaque grille. Les chiffres donnés sur le côté et en haut de\n" +
+                                        "la grille vous donnent des indices. Ils indiquent la taille des blocs de cases noires de la ligne ou de la colonne sur\n" +
+                                        "laquelle ils se trouvent. Par exemple 3,4 à gauche d'une ligne indique qu'il y a, de gauche à droite, un bloc de 3 cases\n" +
+                                        "noires puis un bloc de 4 cases noires sur cette ligne. En revanche, ce qui n'est pas mentionné et qui fait la difficulté,\n" +
+                                        "est le nombre de cases blanches entre les cases noires. On sait simplement qu'il y en a au moins une.", "Comment jouer?", JOptionPane.INFORMATION_MESSAGE);
+        });
+        htc.addActionListener(e -> {
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, "1: Créez une image d'une taille maximale de 100*100px.\n" +
+                    "2: Dessinez quelque chose en noir et blanc.\n" +
+                    "3: Sauvegardez au format .png.\n" +
+                    "4: Utilisez le Picross Converter:\n" +
+                    "  a: Dans le fichier config.picross, après PicrossName, écrivez le nom du pack\n" +
+                    "  b: Dans les lignes suivante, écrivez le nom des images png\n" +
+                    "  c: Sauvegardez et lancez le .jar du PicrossConverter\n" +
+                    "Vous avez convertit vos images!\n\n" +
+                    "Pour toute erreur, regardez le .log.", "Comment créer des niveaux?", JOptionPane.INFORMATION_MESSAGE);
         });
 
         fichier.add(file);
@@ -63,13 +83,6 @@ public class Main extends JFrame {
     }
 
     private class ChoosePack implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-        }
-    }
-
-    private class Reset implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
 
