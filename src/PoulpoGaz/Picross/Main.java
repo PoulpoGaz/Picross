@@ -1,8 +1,13 @@
 package PoulpoGaz.Picross;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.*;
 
 public class Main extends JFrame {
 
@@ -10,7 +15,7 @@ public class Main extends JFrame {
         Main m = new Main();
     }
 
-    public Picross pic = new Picross("Mon super picross", this);
+    public Picross pic = new Picross("pack2/Default.picross", this);
 
     public Main() {
         try {
@@ -20,9 +25,17 @@ public class Main extends JFrame {
         }
         this.setSize(800, 800);
         this.setResizable(false);
-        this.setDefaultCloseOperation(exit());
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setTitle("Picross");
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                exit();
+            }
+        });
+
         this.setContentPane(pic);
         initBar();
         this.pack();
@@ -44,7 +57,10 @@ public class Main extends JFrame {
         JMenuItem htc = new JMenuItem("Comment créer des niveaux?");
 
         file.addActionListener(new ChoosePack());
-        quit.addActionListener(e -> System.exit(0));
+        quit.addActionListener(e -> {
+            exit();
+            System.exit(0);
+        });
         reset.addActionListener(e -> pic.init());
         htp.addActionListener(e -> {
             JOptionPane jop = new JOptionPane();
@@ -85,12 +101,31 @@ public class Main extends JFrame {
     private class ChoosePack implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+            jfc.setDialogTitle("Selectionner un pack de niveau");
+            jfc.setAcceptAllFileFilterUsed(false);
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Picross file", "picross");
+            jfc.addChoosableFileFilter(filter);
 
+            int returnValue = jfc.showOpenDialog(null);
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                pic.path=jfc.getSelectedFile().getPath();
+                pic.level=0;
+                pic.init();
+            }
         }
     }
 
-    public int exit() {
-
-        return EXIT_ON_CLOSE;
+    public void exit() {
+        try {
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File("src/PoulpoGaz/Picross/save.picross")));
+            bos.write(pic.getPath().getBytes());
+            bos.write(("\n"+pic.getLevel()).getBytes());
+            bos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

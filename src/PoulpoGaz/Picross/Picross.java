@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Picross extends JPanel {
 
-    public int wrongBlackCase, blackCase, nbBlackCase, maxLvl, width, height, size, level=0;
+    public int wrongBlackCase, blackCase, nbBlackCase, maxLvl, width, height, size, level;
     public boolean state;
     public int map[][];
     public JPanel content, game;
@@ -19,12 +19,13 @@ public class Picross extends JPanel {
     public Picross(String path, Main main) {
         this.path = path;
         this.m = main;
+        restoreProgress();
         init();
     }
 
     public int getMaxLvl() {
         try {
-            LineNumberReader br = new LineNumberReader(new BufferedReader(new FileReader(path + ".picross")));
+            LineNumberReader br = new LineNumberReader(new BufferedReader(new FileReader(path)));
             String i;
             while((i=br.readLine())!=null) {
                 maxLvl = br.getLineNumber();
@@ -52,7 +53,7 @@ public class Picross extends JPanel {
         this.wrongBlackCase=0;
         this.blackCase=0;
         this.nbBlackCase=0;
-        this.size=0;
+        this.size=40;
 
         this.maxLvl = getMaxLvl();
 
@@ -64,11 +65,14 @@ public class Picross extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         String name = "";
 
-        File pack = new File(path + ".picross");
+        File pack = new File(path);
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(pack));
-            for(int a=0;a<level;a++) br.readLine();
+            for(int a=0;a<level;a++) {
+                br.readLine();
+                System.out.println(a);
+            }
             int i;
             line = br.readLine();
 
@@ -77,8 +81,7 @@ public class Picross extends JPanel {
 
             width = getWH(line);
             height = getWH(line);
-            this.map = new int[height][width];
-            size = 40;
+            map = new int[height][width];
 
             gbc.gridx=0;
             gbc.gridy=0;
@@ -199,7 +202,7 @@ public class Picross extends JPanel {
         if(nbBlackCase==blackCase && wrongBlackCase==0) {
             state=false;
             JOptionPane jop = new JOptionPane();
-            level++;
+            this.level++;
             if(maxLvl>level) {
                 jop.showMessageDialog(null, "Bien joué!", "Niveau réussit!", JOptionPane.INFORMATION_MESSAGE);
                 init();
@@ -212,5 +215,28 @@ public class Picross extends JPanel {
     public void update() {
         if(width>height) cr.update(cases, width);
         else cr.update(cases, height);
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void restoreProgress() {
+        BufferedReader br;
+        try {
+            br = new BufferedReader(new FileReader(new File("src/PoulpoGaz/Picross/save.picross")));
+            this.path = br.readLine();
+            this.level = Integer.parseInt(br.readLine());
+            System.out.println(level);
+            br.close();
+        } catch(FileNotFoundException e) {
+            path = "pack2/Default.picross";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
