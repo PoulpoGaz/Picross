@@ -10,6 +10,8 @@ public class Main extends JFrame {
         Main m = new Main();
     }
 
+    public Picross pic = new Picross("Mon super picross", this);
+
     public Main() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -18,13 +20,14 @@ public class Main extends JFrame {
         }
         this.setSize(800, 800);
         this.setResizable(false);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(exit());
         this.setLocationRelativeTo(null);
         this.setTitle("Picross");
-        this.setContentPane(new Picross("Mon super picross"));
+        this.setContentPane(pic);
         initBar();
         this.pack();
         this.setVisible(true);
+        SwingUtilities.updateComponentTreeUI(this);
     }
 
     public void initBar() {
@@ -42,10 +45,7 @@ public class Main extends JFrame {
 
         file.addActionListener(new ChoosePack());
         quit.addActionListener(e -> System.exit(0));
-        reset.addActionListener(e -> {
-            this.setContentPane(new Picross("Mon super picross"));
-            SwingUtilities.updateComponentTreeUI(this);
-        });
+        reset.addActionListener(e -> pic.init());
         htp.addActionListener(e -> {
             JOptionPane jop = new JOptionPane();
             jop.showMessageDialog(null, "Un picross, logigraphe, hanjie, griddler, nonogram ou encore logimage est un jeu de réflexion solitaire, qui consiste\n" +
@@ -64,7 +64,7 @@ public class Main extends JFrame {
                     "4: Utilisez le Picross Converter:\n" +
                     "  a: Dans le fichier config.picross, après PicrossName, écrivez le nom du pack\n" +
                     "  b: Dans les lignes suivante, écrivez le nom des images png\n" +
-                    "  c: Sauvegardez et lancez le .jar du PicrossConverter\n" +
+                    "  c: Sauvegardez et lancez le .jar du PoulpoGaz.PicrossConverter\n" +
                     "Vous avez convertit vos images!\n\n" +
                     "Pour toute erreur, regardez le .log.", "Comment créer des niveaux?", JOptionPane.INFORMATION_MESSAGE);
         });
@@ -87,5 +87,10 @@ public class Main extends JFrame {
         public void actionPerformed(ActionEvent e) {
 
         }
+    }
+
+    public int exit() {
+
+        return EXIT_ON_CLOSE;
     }
 }

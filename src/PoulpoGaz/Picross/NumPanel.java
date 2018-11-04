@@ -10,8 +10,8 @@ public class NumPanel extends JPanel {
 
     public NumPanel(int size, boolean axis) {
         super();
-        if(axis) this.setPreferredSize(new Dimension(size*10,size*20));
-        else this.setPreferredSize(new Dimension(size*20,size*10));
+        if(axis) this.setPreferredSize(new Dimension(size,size*2));
+        else this.setPreferredSize(new Dimension(size*2,size));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.setBackground(Color.WHITE);
         this.axis = axis;

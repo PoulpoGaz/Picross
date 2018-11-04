@@ -13,7 +13,7 @@ public class Case extends JPanel {
     public Case(boolean value, int size, Picross picross) {
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.setPreferredSize(new Dimension(size*10,size*10));
+        this.setPreferredSize(new Dimension(size,size));
         this.cross=false;
         this.back=Color.WHITE;
         this.addMouseListener(new MouseAdapter() {
@@ -37,9 +37,9 @@ public class Case extends JPanel {
                         cross = !cross;
                         setBack(Color.WHITE);
                     }
-                    picross.check();
                     picross.update();
                     repaint();
+                    picross.check();
                 }
             }
         });

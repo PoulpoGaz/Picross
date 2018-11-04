@@ -50,6 +50,7 @@ public class Main extends JFrame {
             e.printStackTrace();
         }
         try {
+            //On crée un nouveau fichier
             BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(new File(name + ".picross")));
             //On parcourt l'ArrayLis pngList
             for (i=0; i < pngList.size(); i++) {
@@ -57,15 +58,23 @@ public class Main extends JFrame {
                 //On stocke les données des images dans un tableau d'int
 
                 resultat = convertToRGB(img, pngList.get(i));
-                //On crée un nouveau fichier et on écrit 0 si, il y a un pixel blanc et 1 s'il est noir
+
+                //Le nom de l'image
                 fos.write((pngList.get(i)+":").getBytes());
+
+                //On écrit la taille de l'image
+                writeWH(img.getWidth(),fos);
+                writeWH(img.getHeight(),fos);
+
+                //On écrit 0 si, il y a un pixel blanc et 1 s'il est noir
+
                 for (int x = 0; x < img.getWidth(); x++) {
                     for (int y = 0; y < img.getHeight(); y++) {
                         if (resultat[y][x] == -1) fos.write("0".getBytes());
                         else if (resultat[y][x] == -16777216) fos.write("1".getBytes());
                     }
                 }
-                fos.write("\n\r".getBytes());
+                fos.write("\n".getBytes());
             }
             fos.close();
         } catch(IIOException e) {
@@ -75,6 +84,16 @@ public class Main extends JFrame {
             e.printStackTrace();
         }
         exit(0);
+    }
+
+    private void writeWH(int size, BufferedOutputStream fos) {
+        try {
+            if(size<10) fos.write(("00"+size).getBytes());
+            else if(size<100) fos.write(("0"+size).getBytes());
+            else fos.write((""+size).getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private int[][] convertToRGB(BufferedImage image, String imageName) {

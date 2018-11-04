@@ -7,105 +7,127 @@ import java.util.ArrayList;
 
 public class Picross extends JPanel {
 
-    public int wrongBlackCase=0;
-    public int blackCase=0;
-    public int nbBlackCase=0;
+    public int wrongBlackCase, blackCase, nbBlackCase, maxLvl, width, height, size, level=0;
     public boolean state;
-    public int map[][] = new int[5][5];
-    public JPanel content = new JPanel();
-    public JPanel game = new JPanel();
-    public JLabel nameLbl = new JLabel();
+    public int map[][];
+    public JPanel content, game;
     public CurrentRender cr;
-    public ArrayList<Case> cases = new ArrayList<>();
+    public ArrayList<Case> cases;
+    public Main m;
+    public String path, line;
 
-    public Picross(String path) {
-        state=true;
+    public Picross(String path, Main main) {
+        this.path = path;
+        this.m = main;
+        init();
+    }
+
+    public int getMaxLvl() {
+        try {
+            LineNumberReader br = new LineNumberReader(new BufferedReader(new FileReader(path + ".picross")));
+            String i;
+            while((i=br.readLine())!=null) {
+                maxLvl = br.getLineNumber();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return maxLvl;
+    }
+
+    public int getWH(String line) {
+        int wh = Integer.parseInt(line.substring(0,3));
+        this.line = line.substring(3, line.length());
+        System.out.println(wh + "\n" + this.line);
+        return wh;
+    }
+
+    public void init() {
+        this.removeAll();
+        this.state=true;
+        this.cases = new ArrayList<>();
+        this.content = new JPanel();
+        this.game = new JPanel();
+
+        this.wrongBlackCase=0;
+        this.blackCase=0;
+        this.nbBlackCase=0;
+        this.size=0;
+
+        this.maxLvl = getMaxLvl();
+
+        this.line = "";
+
         int x=0, y=0;
+
         game.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        int size=6;
         String name = "";
-
-        gbc.gridx=0;
-        gbc.gridy=0;
-        gbc.gridheight=2;
-        gbc.gridwidth=2;
-        cr = new CurrentRender(size);
-        game.add(cr,gbc);
 
         File pack = new File(path + ".picross");
 
         try {
-            FileReader fr = new FileReader(pack);
+            BufferedReader br = new BufferedReader(new FileReader(pack));
+            for(int a=0;a<level;a++) br.readLine();
             int i;
-            boolean start = false;
+            line = br.readLine();
+
+            name = line.substring(0, line.indexOf(":"));
+            line = line.substring(line.indexOf(":")+1, line.length());
+
+            width = getWH(line);
+            height = getWH(line);
+            this.map = new int[height][width];
+            size = 40;
+
+            gbc.gridx=0;
+            gbc.gridy=0;
+            gbc.gridheight=2;
+            gbc.gridwidth=2;
+            cr = new CurrentRender(size);
+            game.add(cr,gbc);
 
             gbc.gridheight=1;
             gbc.gridwidth=1;
 
-            while ((i=fr.read())!=-1) {
-                char c = (char)i;
-                if(start) {
-                    Case Case;
-                    gbc.gridx=x+2;
-                    gbc.gridy=y+2;
-                    if(c=='0') {
-                        map[y][x]=0;
-                        Case = new Case(false, size, this);
-                        game.add(Case, gbc);
-                        cases.add(Case);
-                    }
-                    else if(c=='1') {
-                        map[y][x]=1;
-                        Case = new Case(true, size, this);
-                        game.add(Case, gbc);
-                        cases.add(Case);
-                        nbBlackCase++;
-                    }
+            for(i=0; i<line.length(); i++) {
+                char c = line.charAt(i);
+                System.out.println(c);
+
+                Case Case;
+                gbc.gridx=x+2;
+                gbc.gridy=y+2;
+                if(c=='0') {
+                    map[y][x]=0;
+                    Case = new Case(false, size, this);
+                    game.add(Case, gbc);
+                    cases.add(Case);
+                }
+                else if(c=='1') {
+                    map[y][x]=1;
+                    Case = new Case(true, size, this);
+                    game.add(Case, gbc);
+                    cases.add(Case);
+                    nbBlackCase++;
+                }
+                y++;
+                if(y==height) {
+                    y=0;
                     x++;
-                    if(x==5) {
-                        x=0;
-                        y++;
-                    }
-                } else {
-                    if(c==':') start = true;
-                    else name+=c;
                 }
             }
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         int total;
-        gbc.gridheight=1;
-        gbc.gridwidth=2;
-        for(x=0;x<5;x++) {
-            total=0;
-            NumPanel num = new NumPanel(size, false);
-            for(y=0; y<5;y++) {
-                if(map[y][x]==1) total++;
-                else if(map[y][x]==0) {
-                    if(total!=0) {
-                        num.addLabel(""+total);
-                    }
-                    total=0;
-                }
-                if(y==4&&total!=0) {
-                    num.addLabel(""+total);
-                }
-            }
-            gbc.gridx=0;
-            gbc.gridy=x+2;
-            num.finish();
-            game.add(num,gbc);
-        }
-
-        gbc.gridwidth=1;
         gbc.gridheight=2;
-        for(y=0;y<5;y++) {
+        gbc.gridwidth=1;
+        for(x=0;x<width;x++) {
             total=0;
             NumPanel num = new NumPanel(size, true);
-            for(x=0; x<5;x++) {
+            for(y=0; y<height;y++) {
                 if(map[y][x]==1) total++;
                 else if(map[y][x]==0) {
                     if(total!=0) {
@@ -113,38 +135,82 @@ public class Picross extends JPanel {
                     }
                     total=0;
                 }
-                if(x==4&&total!=0) {
+                if(y==height-1&&total!=0) {
                     num.addLabel(""+total);
                 }
             }
-            gbc.gridx=y+2;
+            gbc.gridx=x+2;
             gbc.gridy=0;
             num.finish();
             game.add(num,gbc);
         }
 
+        gbc.gridwidth=2;
+        gbc.gridheight=1;
+        for(y=0;y<height;y++) {
+            total=0;
+            NumPanel num = new NumPanel(size, false);
+            for(x=0; x<width;x++) {
+                if(map[y][x]==1) total++;
+                else if(map[y][x]==0) {
+                    if(total!=0) {
+                        num.addLabel(""+total);
+                    }
+                    total=0;
+                }
+                if(x==width-1&&total!=0) {
+                    num.addLabel(""+total);
+                }
+            }
+            gbc.gridx=0;
+            gbc.gridy=y+2;
+            num.finish();
+            game.add(num,gbc);
+        }
         String packName = pack.getName();
         packName = packName.replace(".picross", "");
-        nameLbl.setText("Pack: " + packName + " Picross: "+name);
+
+        JPanel label = new JPanel();
+        label.setLayout(new BorderLayout());
+        JLabel packNameLbl = new JLabel(packName);
+        packNameLbl.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JLabel nameLbl = new JLabel(name);
+        nameLbl.setHorizontalAlignment(SwingConstants.CENTER);
+
+        label.add(packNameLbl, BorderLayout.NORTH);
+        label.add(nameLbl, BorderLayout.CENTER);
 
         content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
-        content.add(nameLbl);
+        content.add(label);
         content.add(game);
-        nameLbl.setBackground(Color.WHITE);
+
+        label.setBackground(Color.WHITE);
         game.setBackground(Color.WHITE);
         content.setBackground(Color.WHITE);
         this.add(content);
         this.setBackground(Color.WHITE);
+        SwingUtilities.updateComponentTreeUI(m);
+        m.pack();
+        this.repaint();
     }
 
     public void check() {
         if(nbBlackCase==blackCase && wrongBlackCase==0) {
             state=false;
-            System.out.println("VICTORY");
+            JOptionPane jop = new JOptionPane();
+            level++;
+            if(maxLvl>level) {
+                jop.showMessageDialog(null, "Bien joué!", "Niveau réussit!", JOptionPane.INFORMATION_MESSAGE);
+                init();
+            } else {
+                jop.showMessageDialog(null, "Vous avez finit le pack " + path + "\n                  Bien joué!", "Pack fini à 100%!", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }
 
     public void update() {
-        cr.update(cases, 5, 5);
+        if(width>height) cr.update(cases, width);
+        else cr.update(cases, height);
     }
 }

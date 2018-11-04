@@ -6,40 +6,36 @@ import java.util.ArrayList;
 
 public class CurrentRender extends JPanel {
 
-    private int width;
-    private int height;
-    private int ratioW;
-    private int ratioH;
+    private int cote=0;
+    private int ratio=0;
     private int size;
     private ArrayList<Case> cases = new ArrayList<>();
 
     public CurrentRender(int size) {
-        this.size = size;
-        this.setPreferredSize(new Dimension(size*20,size*20));
+        this.size = size*2;
+        this.setPreferredSize(new Dimension(this.size,this.size));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     }
 
-    public void update(ArrayList<Case> cases, int width, int height) {
+    public void update(ArrayList<Case> cases, int cote) {
         this.cases = cases;
-        ratioW = size*20/width;
-        ratioH = size*20/height;
-        this.width=width*ratioW;
-        this.height=height*ratioH;
+        ratio = size/cote;
+        this.cote=cote*ratio;
+
         repaint();
     }
 
     public void paintComponent(Graphics g) {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        int x = 0;
-        int y = 0;
+        int x=0, y=0;
         for (Case aCase : cases) {
             g.setColor(aCase.getBack());
-            g.fillRect(x*ratioW, y*ratioH,ratioW,height);
-            x++;
-            if (x == 5) {
-                x = 0;
-                y++;
+            g.fillRect(x*ratio, y*ratio,cote,cote);
+            y++;
+            if (y==cote/ratio) {
+                y=0;
+                x++;
             }
         }
     }

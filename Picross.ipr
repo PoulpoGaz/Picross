@@ -7,6 +7,15 @@
         <element id="module-output" name="Picross" />
       </root>
     </artifact>
+    <artifact type="jar" name="PicrossConverter:jar">
+      <output-path>$PROJECT_DIR$/out/artifacts/PicrossConverter_jar</output-path>
+      <root id="archive" name="PicrossConverter.jar">
+        <element id="module-output" name="PicrossConverter" />
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/PicrossConverter/src/PoulpoGaz/META-INF/MANIFEST.MF" />
+        </element>
+      </root>
+    </artifact>
   </component>
   <component name="ClientPropertiesManager">
     <properties class="javax.swing.AbstractButton">
@@ -206,6 +215,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Picross.iml" filepath="$PROJECT_DIR$/Picross.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PicrossConverter/PicrossConverter.iml" filepath="$PROJECT_DIR$/PicrossConverter/PicrossConverter.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
