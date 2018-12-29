@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class NumPanel extends JPanel {
 
-    public JPanel content = new JPanel();
-    public boolean axis;
+    private JPanel content = new JPanel();
+    private boolean axis;
 
     public NumPanel(int size, boolean axis) {
         super();

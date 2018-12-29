@@ -100,7 +100,7 @@ public class Main extends JFrame {
         int width = image.getWidth();
         int height = image.getHeight();
         //L'image est trop grande
-        if(width>100 || height >100) exit(3);
+        if(width>15 || height >15) exit(3);
         int[][] result = new int[height][width];
         double i=0;
         double wh = (double)width*(double)height;

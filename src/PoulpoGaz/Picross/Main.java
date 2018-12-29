@@ -12,10 +12,10 @@ import java.io.*;
 public class Main extends JFrame {
 
     public static void main(String[] args) {
-        Main m = new Main();
+        new Main();
     }
 
-    public Picross pic = new Picross("pack2/Default.picross", this);
+    private Picross pic = new Picross(this);
 
     public Main() {
         try {
@@ -52,16 +52,22 @@ public class Main extends JFrame {
         JMenuItem file = new JMenuItem("Choisir un pack");
         JMenuItem quit = new JMenuItem("Quitter");
         JMenuItem reset = new JMenuItem("Recommencer");
-        JMenuItem stat = new JMenuItem("Statistiques");
+        JMenuItem restart = new JMenuItem("Recommencer le pack");
+        //JMenuItem stat = new JMenuItem("Statistiques");
         JMenuItem htp = new JMenuItem("Comment jouer?");
         JMenuItem htc = new JMenuItem("Comment créer des niveaux?");
 
         file.addActionListener(new ChoosePack());
+
         quit.addActionListener(e -> {
             exit();
             System.exit(0);
         });
+
         reset.addActionListener(e -> pic.init());
+
+        restart.addActionListener(e -> pic.reset());
+
         htp.addActionListener(e -> {
             JOptionPane jop = new JOptionPane();
             jop.showMessageDialog(null, "Un picross, logigraphe, hanjie, griddler, nonogram ou encore logimage est un jeu de réflexion solitaire, qui consiste\n" +
@@ -74,13 +80,13 @@ public class Main extends JFrame {
         });
         htc.addActionListener(e -> {
             JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "1: Créez une image d'une taille maximale de 100*100px.\n" +
+            jop.showMessageDialog(null, "1: Créez une image d'une taille maximale de 15*15px.\n" +
                     "2: Dessinez quelque chose en noir et blanc.\n" +
                     "3: Sauvegardez au format .png.\n" +
                     "4: Utilisez le Picross Converter:\n" +
                     "  a: Dans le fichier config.picross, après PicrossName, écrivez le nom du pack\n" +
                     "  b: Dans les lignes suivante, écrivez le nom des images png\n" +
-                    "  c: Sauvegardez et lancez le .jar du PoulpoGaz.PicrossConverter\n" +
+                    "  c: Sauvegardez et lancez le .jar du PicrossConverter\n" +
                     "Vous avez convertit vos images!\n\n" +
                     "Pour toute erreur, regardez le .log.", "Comment créer des niveaux?", JOptionPane.INFORMATION_MESSAGE);
         });
@@ -88,7 +94,8 @@ public class Main extends JFrame {
         fichier.add(file);
         fichier.add(quit);
         jeu.add(reset);
-        jeu.add(stat);
+        jeu.add(restart);
+        //jeu.add(stat);
         help.add(htp);
         help.add(htc);
         bar.add(fichier);
@@ -104,13 +111,13 @@ public class Main extends JFrame {
             JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
             jfc.setDialogTitle("Selectionner un pack de niveau");
             jfc.setAcceptAllFileFilterUsed(false);
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("Picross file", "picross");
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Picross file(.picross)", "picross");
             jfc.addChoosableFileFilter(filter);
 
             int returnValue = jfc.showOpenDialog(null);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
-                pic.path=jfc.getSelectedFile().getPath();
-                pic.level=0;
+                pic.setPath(pic.getPath() + jfc.getSelectedFile().getPath());
+                pic.setLevel(0);
                 pic.init();
             }
         }
@@ -118,12 +125,10 @@ public class Main extends JFrame {
 
     public void exit() {
         try {
-            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File("src/PoulpoGaz/Picross/save.picross")));
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File("src/PoulpoGaz/save.picross")));
             bos.write(pic.getPath().getBytes());
             bos.write(("\n"+pic.getLevel()).getBytes());
             bos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -5,6 +5,9 @@
       <output-path>$PROJECT_DIR$/out/artifacts/Picross_jar</output-path>
       <root id="archive" name="Picross.jar">
         <element id="module-output" name="Picross" />
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+        </element>
       </root>
     </artifact>
     <artifact type="jar" name="PicrossConverter:jar">

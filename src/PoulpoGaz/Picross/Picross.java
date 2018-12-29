@@ -7,17 +7,22 @@ import java.util.ArrayList;
 
 public class Picross extends JPanel {
 
-    public int wrongBlackCase, blackCase, nbBlackCase, maxLvl, width, height, size, level;
-    public boolean state;
-    public int map[][];
-    public JPanel content, game;
-    public CurrentRender cr;
-    public ArrayList<Case> cases;
-    public Main m;
-    public String path, line;
+    private int wrongBlackCase;
+    private int blackCase;
+    private int nbBlackCase;
+    private int maxLvl;
+    private int width;
+    private int height;
+    private int level;
+    private boolean state;
+    private int map[][];
+    private CurrentRender cr;
+    private ArrayList<Case> cases;
+    private Main m;
+    private String path, line;
+    private String packName;
 
-    public Picross(String path, Main main) {
-        this.path = path;
+    public Picross(Main main) {
         this.m = main;
         restoreProgress();
         init();
@@ -26,10 +31,8 @@ public class Picross extends JPanel {
     public int getMaxLvl() {
         try {
             LineNumberReader br = new LineNumberReader(new BufferedReader(new FileReader(path)));
-            String i;
-            while((i=br.readLine())!=null) {
-                maxLvl = br.getLineNumber();
-            }
+            while(br.readLine() !=null) {}
+            maxLvl = br.getLineNumber();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,7 +42,6 @@ public class Picross extends JPanel {
     public int getWH(String line) {
         int wh = Integer.parseInt(line.substring(0,3));
         this.line = line.substring(3, line.length());
-        System.out.println(wh + "\n" + this.line);
         return wh;
     }
 
@@ -47,13 +49,13 @@ public class Picross extends JPanel {
         this.removeAll();
         this.state=true;
         this.cases = new ArrayList<>();
-        this.content = new JPanel();
-        this.game = new JPanel();
+        JPanel content = new JPanel();
+        JPanel game = new JPanel();
 
         this.wrongBlackCase=0;
         this.blackCase=0;
         this.nbBlackCase=0;
-        this.size=40;
+        int size = 40;
 
         this.maxLvl = getMaxLvl();
 
@@ -71,7 +73,6 @@ public class Picross extends JPanel {
             BufferedReader br = new BufferedReader(new FileReader(pack));
             for(int a=0;a<level;a++) {
                 br.readLine();
-                System.out.println(a);
             }
             int i;
             line = br.readLine();
@@ -95,7 +96,6 @@ public class Picross extends JPanel {
 
             for(i=0; i<line.length(); i++) {
                 char c = line.charAt(i);
-                System.out.println(c);
 
                 Case Case;
                 gbc.gridx=x+2;
@@ -170,7 +170,7 @@ public class Picross extends JPanel {
             num.finish();
             game.add(num,gbc);
         }
-        String packName = pack.getName();
+        packName = pack.getName();
         packName = packName.replace(".picross", "");
 
         JPanel label = new JPanel();
@@ -178,7 +178,7 @@ public class Picross extends JPanel {
         JLabel packNameLbl = new JLabel(packName);
         packNameLbl.setHorizontalAlignment(SwingConstants.CENTER);
 
-        JLabel nameLbl = new JLabel(name);
+        JLabel nameLbl = new JLabel(name + " - " + width + "x" + height + "px");
         nameLbl.setHorizontalAlignment(SwingConstants.CENTER);
 
         label.add(packNameLbl, BorderLayout.NORTH);
@@ -202,19 +202,19 @@ public class Picross extends JPanel {
         if(nbBlackCase==blackCase && wrongBlackCase==0) {
             state=false;
             JOptionPane jop = new JOptionPane();
-            this.level++;
+            level++;
             if(maxLvl>level) {
                 jop.showMessageDialog(null, "Bien joué!", "Niveau réussit!", JOptionPane.INFORMATION_MESSAGE);
                 init();
             } else {
-                jop.showMessageDialog(null, "Vous avez finit le pack " + path + "\n                  Bien joué!", "Pack fini à 100%!", JOptionPane.INFORMATION_MESSAGE);
+                level--;
+                jop.showMessageDialog(null, "Vous avez finit le pack " + packName + "\n                  Bien joué!", "Pack fini à 100%!", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
 
     public void update() {
-        if(width>height) cr.update(cases, width);
-        else cr.update(cases, height);
+        cr.update(cases, width, height);
     }
 
     public String getPath() {
@@ -227,16 +227,98 @@ public class Picross extends JPanel {
 
     public void restoreProgress() {
         BufferedReader br;
-        try {
-            br = new BufferedReader(new FileReader(new File("src/PoulpoGaz/Picross/save.picross")));
-            this.path = br.readLine();
-            this.level = Integer.parseInt(br.readLine());
-            System.out.println(level);
-            br.close();
-        } catch(FileNotFoundException e) {
-            path = "pack2/Default.picross";
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        File f = new File("src/PoulpoGaz/save.picross");
+
+        if(!f.exists()) {
+            path = "ressources/Default.picross";
+            File f2 = new File(path);
+            System.out.println(f2.getAbsolutePath());
+        } else {
+            try {
+                br = new BufferedReader(new FileReader(f));
+                path = br.readLine();
+
+                File f2 = new File(path);
+                if(!f2.exists()) {
+                    err(3);
+                    path = "ressources/Default.picross";
+                    br.close();
+                    f.delete();
+                    System.exit(3);
+                }
+
+                try {
+                    level = Integer.parseInt(br.readLine());
+                } catch(NumberFormatException e) {
+                    br.close();
+                    f.delete();
+                    err(1);
+                }
+                br.close();
+
+                if(level > getMaxLvl()) {
+                    f.delete();
+                    err(2);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
+        File f3 = new File(path);
+        if(!f3.exists()) {
+            err(4);
+        }
+    }
+
+    public void err(int err) {
+        switch (err) {
+            case 1:
+                JOptionPane.showMessageDialog(null,"Fichier de sauvegarde vide\nSuppression...", "Erreur", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null,"Le fichier de sauvegarde est corompu", "Erreur", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(null, "Le fichier contenant le pack de niveau\na été supprimé(" + path + ").", "Erreur critique", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 4:
+                JOptionPane.showMessageDialog(null, "Le fichier contenant le pack défaut a été supprimé","Erreur", JOptionPane.ERROR_MESSAGE);
+                break;
+        }
+    }
+
+    public void reset() {
+        level = 0;
+        init();
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getWrongBlackCase() {
+        return wrongBlackCase;
+    }
+
+    public int getBlackCase() {
+        return blackCase;
+    }
+
+    public void setBlackCase(int nb) {
+        blackCase = nb;
+    }
+
+    public void setWrongBlackCase(int nb) {
+        wrongBlackCase = nb;
+    }
+
+    public boolean getState() {
+        return state;
     }
 }

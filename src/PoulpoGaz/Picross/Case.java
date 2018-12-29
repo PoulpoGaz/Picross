@@ -19,21 +19,32 @@ public class Case extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if(picross.state) {
+                if(picross.getState()) {
                     if(SwingUtilities.isLeftMouseButton(e)) {
-                        if (getBack() == Color.BLACK) {
+                        if (getColor() == Color.BLACK) {
                             setBack(Color.WHITE);
-                            if (value) picross.blackCase--;
-                            else picross.wrongBlackCase--;
+                            if (value) {
+                                picross.setBlackCase(picross.getBlackCase()-1);
+                            } else {
+                                picross.setWrongBlackCase(picross.getWrongBlackCase()-1);
+                            }
                         }else {
                             setBack(Color.BLACK);
-                            if(value) picross.blackCase++;
-                            else picross.wrongBlackCase++;
+                            if(value) {
+                                picross.setBlackCase(picross.getBlackCase()+1);
+                            }
+                            else {
+                                picross.setWrongBlackCase(picross.getWrongBlackCase()+1);
+                            }
                         }
                         cross=false;
                     } else if(SwingUtilities.isRightMouseButton(e)) {
-                        if(getBack()==Color.BLACK && value) picross.blackCase--;
-                        else if(getBack()==Color.BLACK&& !value) picross.wrongBlackCase--;
+                        if(getColor()==Color.BLACK && value) {
+                            picross.setBlackCase(picross.getBlackCase()-1);
+                        }
+                        else if(getColor()==Color.BLACK&& !value) {
+                            picross.setWrongBlackCase(picross.getWrongBlackCase()-1);
+                        }
                         cross = !cross;
                         setBack(Color.WHITE);
                     }
@@ -46,7 +57,7 @@ public class Case extends JPanel {
     }
 
     public void paintComponent(Graphics g) {
-        g.setColor(getBack());
+        g.setColor(getColor());
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
         if(cross) {
             Graphics2D g2d = (Graphics2D) g;
@@ -58,7 +69,7 @@ public class Case extends JPanel {
         }
     }
 
-    public Color getBack() {
+    public Color getColor() {
         return back;
     }
 
