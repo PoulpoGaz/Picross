@@ -3,18 +3,35 @@
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
       <artifact name="Picross:jar" />
+      <artifact name="PicrossConverter:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="572c5f0a-503e-426c-be45-d0d5a38d1fe2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Picross/PoulpoGaz/Picross/Main$ChoosePack.class" afterPath="$PROJECT_DIR$/out/production/Picross/PoulpoGaz/Picross/Main$ChoosePack.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Picross.ipr" afterPath="$PROJECT_DIR$/Picross.ipr" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Exemple/10x5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Exemple/5x10.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Exemple/5x5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Exemple/PicrossConverter.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Picross/Default.picross" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Picross/PoulpoGaz/Picross/save.picross" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Picross/PoulpoGaz/save.picross" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ressources/Default.picross" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/PoulpoGaz/save.picross" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/PicrossConverter_jar/PicrossConverter.jar" afterPath="$PROJECT_DIR$/out/artifacts/PicrossConverter_jar/PicrossConverter.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/Picross_jar/Picross.jar" afterPath="$PROJECT_DIR$/out/artifacts/Picross_jar/Picross.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Picross/PoulpoGaz/Picross/Main.class" afterPath="$PROJECT_DIR$/out/production/Picross/PoulpoGaz/Picross/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Picross/PoulpoGaz/Picross/Picross.class" afterPath="$PROJECT_DIR$/out/production/Picross/PoulpoGaz/Picross/Picross.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PoulpoGaz/Picross/Picross.java" afterPath="$PROJECT_DIR$/src/PoulpoGaz/Picross/Picross.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Picross/PoulpoGaz/Picross/Main$1.class" afterPath="$PROJECT_DIR$/out/production/Picross/PoulpoGaz/Picross/Main$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PoulpoGaz/Picross/Main.java" afterPath="$PROJECT_DIR$/src/PoulpoGaz/Picross/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PicrossConverter/PoulpoGaz/PicrossConverter/Main.class" afterPath="$PROJECT_DIR$/out/production/PicrossConverter/PoulpoGaz/PicrossConverter/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exemple/Test.picross" afterPath="$PROJECT_DIR$/Exemple/Test.picross" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exemple/config.picross" afterPath="$PROJECT_DIR$/Exemple/config.picross" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exemple/picross.log" afterPath="$PROJECT_DIR$/Exemple/picross.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Picross.iws" afterPath="$PROJECT_DIR$/Picross.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PoulpoGaz/Picross/Case.java" afterPath="$PROJECT_DIR$/src/PoulpoGaz/Picross/Case.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PoulpoGaz/Picross/CurrentRender.java" afterPath="$PROJECT_DIR$/src/PoulpoGaz/Picross/CurrentRender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PoulpoGaz/Picross/Main.java" afterPath="$PROJECT_DIR$/src/PoulpoGaz/Picross/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PoulpoGaz/Picross/NumPanel.java" afterPath="$PROJECT_DIR$/src/PoulpoGaz/Picross/NumPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PoulpoGaz/Picross/Picross.java" afterPath="$PROJECT_DIR$/src/PoulpoGaz/Picross/Picross.java" />
     </list>
     <ignored path="Picross.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,11 +53,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PoulpoGaz/Picross/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33519554">
-              <caret line="114" column="47" selection-start-line="114" selection-start-column="47" selection-end-line="114" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,26 +65,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Picross.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Picross.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PoulpoGaz/Picross/Picross.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="230" column="41" selection-start-line="230" selection-start-column="41" selection-end-line="230" selection-end-column="41" />
+            <state vertical-scroll-proportion="2.9243698">
+              <caret line="109" column="46" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6214#6215#0" expanded="true" />
-                <element signature="e#6261#6262#0" expanded="true" />
+                <element signature="e#6175#6176#0" expanded="true" />
+                <element signature="e#6222#6223#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Default.picross" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ressources/Default.picross">
+      <file leaf-file-name="Case.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PoulpoGaz/Picross/Case.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="37" selection-start-line="0" selection-start-column="37" selection-end-line="0" selection-end-column="37" />
-              <folding />
+              <caret line="89" column="21" selection-start-line="89" selection-start-column="21" selection-end-line="89" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2948#2949#0" expanded="true" />
+                <element signature="e#2972#2973#0" expanded="true" />
+                <element signature="e#3000#3001#0" expanded="true" />
+                <element signature="e#3024#3025#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CurrentRender.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PoulpoGaz/Picross/CurrentRender.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,14 +145,17 @@
         <option value="$PROJECT_DIR$/config.picross" />
         <option value="$PROJECT_DIR$/Mon super picross.picross" />
         <option value="$PROJECT_DIR$/levels/Default.picross" />
-        <option value="$PROJECT_DIR$/src/PoulpoGaz/Picross/NumPanel.java" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/PicrossConverter/src/PoulpoGaz/PicrossConverter/Main.java" />
+        <option value="$PROJECT_DIR$/src/PoulpoGaz/Picross/save.picross" />
+        <option value="$PROJECT_DIR$/src/PoulpoGaz/save.picross" />
+        <option value="$PROJECT_DIR$/src/PoulpoGaz/Picross/Main.java" />
+        <option value="$PROJECT_DIR$/save.picross" />
+        <option value="$PROJECT_DIR$/Exemple/Test.picross" />
+        <option value="$PROJECT_DIR$/src/PoulpoGaz/Picross/NumPanel.java" />
+        <option value="$PROJECT_DIR$/src/PoulpoGaz/Picross/Picross.java" />
         <option value="$PROJECT_DIR$/src/PoulpoGaz/Picross/Case.java" />
         <option value="$PROJECT_DIR$/src/PoulpoGaz/Picross/CurrentRender.java" />
-        <option value="$PROJECT_DIR$/src/PoulpoGaz/Picross/save.picross" />
-        <option value="$PROJECT_DIR$/src/PoulpoGaz/Picross/Main.java" />
-        <option value="$PROJECT_DIR$/src/PoulpoGaz/Picross/Picross.java" />
       </list>
     </option>
   </component>
@@ -186,6 +224,7 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -221,46 +260,13 @@
               <option name="myItemId" value="PoulpoGaz" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Picross" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Picross" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PoulpoGaz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Picross" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Picross" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Picross" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ressources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -273,19 +279,19 @@
     <property name="SearchEverywhereHistoryKey" value="maxL&#9;PSI&#9;JAVA://PoulpoGaz.Picross.Picross#maxLvl" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Valentin\JavaProject\Picross\ressources" />
-      <recent name="C:\Users\Valentin\JavaProject\Picross\src\PoulpoGaz\Picross\levels" />
-      <recent name="C:\Users\Valentin\JavaProject\Picross\src\PoulpoGaz\Picross" />
-      <recent name="C:\Users\Valentin\JavaProject\Picross" />
-      <recent name="C:\Users\Valentin\JavaProject\Picross\src\PoulpoGaz" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="PoulpoGaz.Picross" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Valentin\JavaProject\Picross\src\PoulpoGaz\e" />
       <recent name="C:\Users\Valentin\JavaProject\Picross\src\PoulpoGaz" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="PoulpoGaz.Picross" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Valentin\JavaProject\Picross" />
+      <recent name="C:\Users\Valentin\JavaProject\Picross\src\PoulpoGaz" />
+      <recent name="C:\Users\Valentin\JavaProject\Picross\ressources" />
+      <recent name="C:\Users\Valentin\JavaProject\Picross\src\PoulpoGaz\Picross\levels" />
+      <recent name="C:\Users\Valentin\JavaProject\Picross\src\PoulpoGaz\Picross" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Picross">
@@ -646,11 +652,10 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26075268" sideWeight="0.5025707" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32258064" sideWeight="0.4974293" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32258064" sideWeight="0.4974293" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -661,6 +666,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -717,18 +723,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/PoulpoGaz/Picross/Picross.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="236" column="20" selection-start-line="236" selection-start-column="20" selection-end-line="236" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6214#6215#0" expanded="true" />
-            <element signature="e#6261#6262#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PoulpoGaz/Picross/NumPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -755,8 +749,8 @@
           <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2759#2760#0" expanded="true" />
-            <element signature="e#2786#2787#0" expanded="true" />
+            <element signature="e#2821#2822#0" expanded="true" />
+            <element signature="e#2848#2849#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -767,8 +761,8 @@
           <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2759#2760#0" expanded="true" />
-            <element signature="e#2786#2787#0" expanded="true" />
+            <element signature="e#2821#2822#0" expanded="true" />
+            <element signature="e#2848#2849#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -779,8 +773,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6214#6215#0" expanded="true" />
-            <element signature="e#6261#6262#0" expanded="true" />
+            <element signature="e#6175#6176#0" expanded="true" />
+            <element signature="e#6222#6223#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -828,8 +822,8 @@
           <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2759#2760#0" expanded="true" />
-            <element signature="e#2786#2787#0" expanded="true" />
+            <element signature="e#2821#2822#0" expanded="true" />
+            <element signature="e#2848#2849#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -840,8 +834,8 @@
           <caret line="41" column="41" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6214#6215#0" expanded="true" />
-            <element signature="e#6261#6262#0" expanded="true" />
+            <element signature="e#6175#6176#0" expanded="true" />
+            <element signature="e#6222#6223#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1002,14 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Dev/Java/jdk1.8.65/src.zip!/java/io/File.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="1032" column="19" selection-start-line="1032" selection-start-column="19" selection-end-line="1032" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Dev/Java/jdk1.8.65/src.zip!/java/io/BufferedReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
@@ -1027,9 +1013,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownFxPreviewEditor">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1424581">
           <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
@@ -1044,13 +1027,8 @@
           <second_editor />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PicrossConverter/src/PoulpoGaz/PicrossConverter/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7685775">
-          <caret line="102" column="33" selection-start-line="102" selection-start-column="33" selection-end-line="102" selection-end-column="33" />
-          <folding />
-        </state>
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="jar://D:/Dev/Java/jdk1.8.65/src.zip!/java/lang/System.java">
@@ -1064,10 +1042,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://D:/Dev/Java/jdk1.8.65/src.zip!/java/lang/Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3326316">
+          <caret line="2259" column="21" selection-start-line="2259" selection-start-column="21" selection-end-line="2259" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Picross.ipr">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.4105263">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Picross.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Dev/Java/jdk1.8.65/src.zip!/java/net/URL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6885475">
+          <caret line="738" column="18" selection-start-line="738" selection-start-column="18" selection-end-line="738" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Dev/Java/jdk1.8.65/src.zip!/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33240223">
+          <caret line="965" column="16" selection-start-line="965" selection-start-column="16" selection-end-line="965" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PicrossConverter/src/PoulpoGaz/PicrossConverter/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.4455307">
+          <caret line="166" column="26" selection-start-line="166" selection-start-column="26" selection-end-line="166" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PoulpoGaz/Picross/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Default.picross">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PoulpoGaz/Picross/NumPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.036093418">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.21638656">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1076,95 +1123,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PoulpoGaz/Picross/Case.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.2505263">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="21" selection-start-line="89" selection-start-column="21" selection-end-line="89" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2759#2760#0" expanded="true" />
-            <element signature="e#2786#2787#0" expanded="true" />
+            <element signature="e#2948#2949#0" expanded="true" />
+            <element signature="e#2972#2973#0" expanded="true" />
+            <element signature="e#3000#3001#0" expanded="true" />
+            <element signature="e#3024#3025#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PoulpoGaz/Picross/CurrentRender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43789473">
-          <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Dev/Java/jdk1.8.65/src.zip!/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3326316">
-          <caret line="2259" column="21" selection-start-line="2259" selection-start-column="21" selection-end-line="2259" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/META-INF/MANIFEST.MF">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Picross.ipr">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.4105263">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Picross.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Dev/Java/jdk1.8.65/src.zip!/java/net/URL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6885475">
-          <caret line="738" column="18" selection-start-line="738" selection-start-column="18" selection-end-line="738" selection-end-column="18" />
-          <folding>
-            <element signature="e#28465#28466#0" expanded="true" />
-            <element signature="e#28492#28493#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ressources/Default.picross">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="37" selection-start-line="0" selection-start-column="37" selection-end-line="0" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PoulpoGaz/Picross/Picross.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="230" column="41" selection-start-line="230" selection-start-column="41" selection-end-line="230" selection-end-column="41" />
+        <state vertical-scroll-proportion="2.9243698">
+          <caret line="109" column="46" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6214#6215#0" expanded="true" />
-            <element signature="e#6261#6262#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PoulpoGaz/Picross/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33519554">
-          <caret line="114" column="47" selection-start-line="114" selection-start-column="47" selection-end-line="114" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#6175#6176#0" expanded="true" />
+            <element signature="e#6222#6223#0" expanded="true" />
           </folding>
         </state>
       </provider>

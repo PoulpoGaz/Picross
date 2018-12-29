@@ -53,7 +53,6 @@ public class Main extends JFrame {
         JMenuItem quit = new JMenuItem("Quitter");
         JMenuItem reset = new JMenuItem("Recommencer");
         JMenuItem restart = new JMenuItem("Recommencer le pack");
-        //JMenuItem stat = new JMenuItem("Statistiques");
         JMenuItem htp = new JMenuItem("Comment jouer?");
         JMenuItem htc = new JMenuItem("Comment créer des niveaux?");
 
@@ -84,18 +83,19 @@ public class Main extends JFrame {
                     "2: Dessinez quelque chose en noir et blanc.\n" +
                     "3: Sauvegardez au format .png.\n" +
                     "4: Utilisez le Picross Converter:\n" +
-                    "  a: Dans le fichier config.picross, après PicrossName, écrivez le nom du pack\n" +
-                    "  b: Dans les lignes suivante, écrivez le nom des images png\n" +
-                    "  c: Sauvegardez et lancez le .jar du PicrossConverter\n" +
+                    "  a: Créer un fichier config.picross\n" +
+                    "  b: Dans celui-ci écrivez PicrossName puis sautez une ligne.\n" +
+                    "     Écrivez votre nom de pack.\n" +
+                    "  c: À la suite du nom, écrivez les noms des fichiers .png que vous souhaitez convertir.\n" +
+                    "  d: Lancez le PicrossConverter qui doit être présent dans le même dossier que vos images" +
                     "Vous avez convertit vos images!\n\n" +
-                    "Pour toute erreur, regardez le .log.", "Comment créer des niveaux?", JOptionPane.INFORMATION_MESSAGE);
+                    "Pour toute erreur, regardez le .log ou regardez le dossier Exemple.", "Comment créer des niveaux?", JOptionPane.INFORMATION_MESSAGE);
         });
 
         fichier.add(file);
         fichier.add(quit);
         jeu.add(reset);
         jeu.add(restart);
-        //jeu.add(stat);
         help.add(htp);
         help.add(htc);
         bar.add(fichier);
@@ -116,7 +116,7 @@ public class Main extends JFrame {
 
             int returnValue = jfc.showOpenDialog(null);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
-                pic.setPath(pic.getPath() + jfc.getSelectedFile().getPath());
+                pic.setPath(jfc.getSelectedFile().getPath());
                 pic.setLevel(0);
                 pic.init();
             }
@@ -125,7 +125,7 @@ public class Main extends JFrame {
 
     public void exit() {
         try {
-            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File("src/PoulpoGaz/save.picross")));
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File("save.picross")));
             bos.write(pic.getPath().getBytes());
             bos.write(("\n"+pic.getLevel()).getBytes());
             bos.close();

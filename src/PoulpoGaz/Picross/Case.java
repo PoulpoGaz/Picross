@@ -9,27 +9,33 @@ public class Case extends JPanel {
 
     private boolean cross;
     private Color back;
+    private int x, y;
 
-    public Case(boolean value, int size, Picross picross) {
+    public Case(boolean value, Picross picross, int x, int y) {
         this.setBackground(Color.WHITE);
+        this.setPreferredSize(new Dimension(40,40));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.setPreferredSize(new Dimension(size,size));
-        this.cross=false;
-        this.back=Color.WHITE;
+
+        cross = false;
+        back = Color.WHITE;
+
+        this.x = x;
+        this.y = y;
+
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 if(picross.getState()) {
                     if(SwingUtilities.isLeftMouseButton(e)) {
                         if (getColor() == Color.BLACK) {
-                            setBack(Color.WHITE);
+                            setColor(Color.WHITE);
                             if (value) {
                                 picross.setBlackCase(picross.getBlackCase()-1);
                             } else {
                                 picross.setWrongBlackCase(picross.getWrongBlackCase()-1);
                             }
                         }else {
-                            setBack(Color.BLACK);
+                            setColor(Color.BLACK);
                             if(value) {
                                 picross.setBlackCase(picross.getBlackCase()+1);
                             }
@@ -46,7 +52,7 @@ public class Case extends JPanel {
                             picross.setWrongBlackCase(picross.getWrongBlackCase()-1);
                         }
                         cross = !cross;
-                        setBack(Color.WHITE);
+                        setColor(Color.WHITE);
                     }
                     picross.update();
                     repaint();
@@ -73,7 +79,15 @@ public class Case extends JPanel {
         return back;
     }
 
-    public void setBack(Color back) {
+    public void setColor(Color back) {
         this.back = back;
+    }
+
+    public int getPosX() {
+        return x;
+    }
+
+    public int getPosY() {
+        return y;
     }
 }

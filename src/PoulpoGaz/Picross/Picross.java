@@ -55,7 +55,6 @@ public class Picross extends JPanel {
         this.wrongBlackCase=0;
         this.blackCase=0;
         this.nbBlackCase=0;
-        int size = 40;
 
         this.maxLvl = getMaxLvl();
 
@@ -88,7 +87,7 @@ public class Picross extends JPanel {
             gbc.gridy=0;
             gbc.gridheight=2;
             gbc.gridwidth=2;
-            cr = new CurrentRender(size);
+            cr = new CurrentRender();
             game.add(cr,gbc);
 
             gbc.gridheight=1;
@@ -102,13 +101,13 @@ public class Picross extends JPanel {
                 gbc.gridy=y+2;
                 if(c=='0') {
                     map[y][x]=0;
-                    Case = new Case(false, size, this);
+                    Case = new Case(false, this, x, y);
                     game.add(Case, gbc);
                     cases.add(Case);
                 }
                 else if(c=='1') {
                     map[y][x]=1;
-                    Case = new Case(true, size, this);
+                    Case = new Case(true, this, x, y);
                     game.add(Case, gbc);
                     cases.add(Case);
                     nbBlackCase++;
@@ -129,7 +128,7 @@ public class Picross extends JPanel {
         gbc.gridwidth=1;
         for(x=0;x<width;x++) {
             total=0;
-            NumPanel num = new NumPanel(size, true);
+            NumPanel num = new NumPanel(true);
             for(y=0; y<height;y++) {
                 if(map[y][x]==1) total++;
                 else if(map[y][x]==0) {
@@ -152,7 +151,7 @@ public class Picross extends JPanel {
         gbc.gridheight=1;
         for(y=0;y<height;y++) {
             total=0;
-            NumPanel num = new NumPanel(size, false);
+            NumPanel num = new NumPanel(false);
             for(x=0; x<width;x++) {
                 if(map[y][x]==1) total++;
                 else if(map[y][x]==0) {
@@ -228,10 +227,10 @@ public class Picross extends JPanel {
     public void restoreProgress() {
         BufferedReader br;
 
-        File f = new File("src/PoulpoGaz/save.picross");
+        File f = new File("save.picross");
 
         if(!f.exists()) {
-            path = "ressources/Default.picross";
+            path = "Default.picross";
             File f2 = new File(path);
             System.out.println(f2.getAbsolutePath());
         } else {
@@ -239,22 +238,25 @@ public class Picross extends JPanel {
                 br = new BufferedReader(new FileReader(f));
                 path = br.readLine();
 
-                File f2 = new File(path);
-                if(!f2.exists()) {
-                    err(3);
-                    path = "ressources/Default.picross";
-                    br.close();
-                    f.delete();
-                    System.exit(3);
-                }
-
                 try {
                     level = Integer.parseInt(br.readLine());
                 } catch(NumberFormatException e) {
                     br.close();
                     f.delete();
                     err(1);
+                    System.exit(1);
                 }
+
+                File f2 = new File(path);
+                if(!f2.exists()) {
+                    err(3);
+                    path = "Default.picross";
+                    br.close();
+                    f.delete();
+                    System.exit(3);
+                }
+
+
                 br.close();
 
                 if(level > getMaxLvl()) {
@@ -275,13 +277,13 @@ public class Picross extends JPanel {
     public void err(int err) {
         switch (err) {
             case 1:
-                JOptionPane.showMessageDialog(null,"Fichier de sauvegarde vide\nSuppression...", "Erreur", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Fichier de sauvegarde vide\nSuppression.\nVeuillez relancer Picross", "Erreur critique", JOptionPane.ERROR_MESSAGE);
                 break;
             case 2:
                 JOptionPane.showMessageDialog(null,"Le fichier de sauvegarde est corompu", "Erreur", JOptionPane.ERROR_MESSAGE);
                 break;
             case 3:
-                JOptionPane.showMessageDialog(null, "Le fichier contenant le pack de niveau\na été supprimé(" + path + ").", "Erreur critique", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Le fichier contenant le pack de niveau\na été supprimé(" + path + ").\nVeuillez relancer Picross", "Erreur critique", JOptionPane.ERROR_MESSAGE);
                 break;
             case 4:
                 JOptionPane.showMessageDialog(null, "Le fichier contenant le pack défaut a été supprimé","Erreur", JOptionPane.ERROR_MESSAGE);
